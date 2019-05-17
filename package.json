@@ -1,0 +1,37 @@
+{
+  "name": "keitaikani",
+  "version": "0.0.0",
+  "description": "Study kanji on the go with wanikani.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "dev": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PygmalionPolymorph/keitaikani.git"
+  },
+  "keywords": [
+    "kanji",
+    "wanikani",
+    "japanese",
+    "mobile"
+  ],
+  "author": "PygmalionPolymorph",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PygmalionPolymorph/keitaikani/issues"
+  },
+  "homepage": "https://github.com/PygmalionPolymorph/keitaikani#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "flyd": "^0.2.8",
+    "kaleido": "0.2.2",
+    "ramda": "^0.26.1",
+    "snabbdom": "^0.7.3",
+    "src": "^1.1.2",
+    "wanakana": "^4.0.2"
+  }
+}
