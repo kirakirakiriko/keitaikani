@@ -4,19 +4,14 @@ import compose from 'ramda/es/compose';
 import cond from 'ramda/es/cond';
 import head from 'ramda/es/head';
 import path from 'ramda/es/path';
-import propEq from 'ramda/es/propEq';
 import reject from 'ramda/es/reject';
-import sortBy from 'ramda/es/sortBy';
 import uniqBy from 'ramda/es/uniqBy';
 
 import { alreadyAnsweredCorrectly, answers } from './answer';
-import { availableSubjects } from './subject';
-import { learning } from './learning';
+import {
+  availableSubjects, isSubjectSyncing, subjectIsKanji, subjectIsRadical, subjectIsVocabulary,
+} from './subject';
 
-
-const isRadical = propEq('object', 'radical');
-const isKanji = propEq('object', 'kanji');
-const isVocabulary = propEq('object', 'vocabulary');
 
 const radicalTasks = subject => [
   {
@@ -37,20 +32,26 @@ const vocabularyTasks = subject => [
 ];
 
 const subjectToTasks = cond([
-  [isRadical, radicalTasks],
-  [isKanji, vocabularyTasks],
-  [isVocabulary, vocabularyTasks],
+  [subjectIsRadical, radicalTasks],
+  [subjectIsKanji, vocabularyTasks],
+  [subjectIsVocabulary, vocabularyTasks],
 ]);
 
 const subjectsToTasks = chain(subjectToTasks);
 
+// const timesAnswered = answrs => task => answrs.filter(pathEq(['subject', 'id'], task.subject.id)).length;
+
 export const tasks = combine(
-  (answers, availableSubjects) => compose(
-    sortBy(path(['subject', 'id'])),
-    reject(alreadyAnsweredCorrectly(answers())),
+  (answrs, availSubjects) => compose(
+    // sortWith([
+    // ascend(timesAnswered(answers()))
+    // ]),
+    reject(alreadyAnsweredCorrectly(answrs())),
     subjectsToTasks,
-  )(availableSubjects()),
-[answers.$, availableSubjects.$]);
+    reject(isSubjectSyncing),
+  )(availSubjects()),
+  [answers.$, availableSubjects.$],
+);
 
 export const currentTask = tasks.map(head);
 export const remainingSubjects = tasks.map(uniqBy(path(['subject', 'id'])));

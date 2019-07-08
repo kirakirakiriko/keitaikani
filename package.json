@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test",
-    "dev": "parcel src/index.html"
+    "dev": "parcel serve --https src/index.html",
+    "cors": "node cors.js"
   },
   "repository": {
     "type": "git",
@@ -24,9 +25,16 @@
   },
   "homepage": "https://github.com/PygmalionPolymorph/keitaikani#readme",
   "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.18.0",
     "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
+    "cors-anywhere": "^0.4.1",
+    "cors-proxy": "^1.0.3",
+    "dexie": "^2.0.4",
+    "dexie-observable": "^1.0.0-beta.5",
     "flyd": "^0.2.8",
     "kaleido": "0.2.2",
     "ramda": "^0.26.1",
