@@ -28,7 +28,9 @@
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.18.0",
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.3",
+    "serverless": "^1.46.1",
+    "serverless-offline": "^5.7.1"
   },
   "dependencies": {
     "cors-anywhere": "^0.4.1",
@@ -38,6 +40,7 @@
     "flyd": "^0.2.8",
     "kaleido": "0.2.2",
     "ramda": "^0.26.1",
+    "request": "^2.88.0",
     "snabbdom": "^0.7.3",
     "src": "^1.1.2",
     "wanakana": "^4.0.2"

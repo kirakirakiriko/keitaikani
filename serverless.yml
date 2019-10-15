@@ -1,0 +1,22 @@
+service: keitaikani
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: 'eu-central-1'
+
+plugins:
+  - serverless-offline
+
+functions:
+  cors-proxy:
+    name: cors-proxy
+    handler: cors.corsProxy
+    events:
+      - http:
+        path: ''
+        method: get
+        cors: true
+      - http:
+        path: ''
+        method: post
+        cors: true

@@ -3,29 +3,26 @@ import { doPullSync } from '../sync';
 
 import apiKeyInput from './components/apiKeyInput';
 import kyoushi from './components/kyoushi';
+import header from './components/header';
+import index from './components/indexPage';
 
-import { remainingSubjects } from '../state/tasks';
 import { page } from '../state/ui';
 
-const settings = () => apiKeyInput();
-
 const routes = {
+  '/': index,
   '/review': kyoushi,
-  '/settings': settings
+  '/settings': apiKeyInput,
 };
 
 const currentPage = () => routes[page.get()] || (() => null);
 
 const layout = () => [
-  h('div.reviews', remainingSubjects().length),
-  h('button', {
-    on: { click: doPullSync }
-  }, 'Refresh'),
+  header(),
   currentPage()(),
 ];
 
 export default () => h('h1', {
   hook: {
     init: doPullSync,
-  }
+  },
 }, layout());
